@@ -1,7 +1,7 @@
 import logging
 import os
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
-from conversations import *
+#from conversations import *
 
 PORT = int(os.environ.get('PORT', 5000))
 APP_NAME = "a-safe-space-loveusp"
@@ -15,7 +15,13 @@ logger = logging.getLogger(__name__)
 
 # Define a few command handlers. These usually take the two arguments update and
 # context. Error handlers also receive the raised TelegramError object in error.
+def start(update, context):
+    """Send a message when the command /start is issued."""
+    update.message.reply_text('Hi!')
 
+def error(update, context):
+    # Log Errors caused by Updates.
+    logger.warning('Update "%s" caused error "%s"', update, context.error)
 
 def main():
     """Start the bot."""
