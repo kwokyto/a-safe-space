@@ -1,11 +1,10 @@
-service: anon-group-bot
-
+service: a-safe-space
 provider:
   name: aws
   runtime: python3.6
   profile:
   environment:
-    TELEGRAM_TOKEN: ${file(./serverless.env.yml):TELEGRAM_TOKEN, '1362043851:AAFL26fjgBBYjyBK8bEEeFQ9r6QG01SGSto'}
+    TELEGRAM_TOKEN: ${file(./serverless.env.yml):TELEGRAM_TOKEN, '1846154865:AAFfRczgPFIX-x5dou3Embu-y-8YsofIDHs'}
 
 functions:
   webhook:

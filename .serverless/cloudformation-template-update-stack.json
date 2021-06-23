@@ -44,6 +44,21 @@
                       "/*"
                     ]
                   ]
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":s3:::",
+                      {
+                        "Ref": "ServerlessDeploymentBucket"
+                      }
+                    ]
+                  ]
                 }
               ],
               "Condition": {
@@ -59,13 +74,13 @@
     "WebhookLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/aws/lambda/anon-group-bot-dev-webhook"
+        "LogGroupName": "/aws/lambda/a-safe-space-dev-webhook"
       }
     },
     "SetUnderscorewebhookLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/aws/lambda/anon-group-bot-dev-set_webhook"
+        "LogGroupName": "/aws/lambda/a-safe-space-dev-set_webhook"
       }
     },
     "IamRoleLambdaExecution": {
@@ -93,7 +108,7 @@
               "Fn::Join": [
                 "-",
                 [
-                  "anon-group-bot",
+                  "a-safe-space",
                   "dev",
                   "lambda"
                 ]
@@ -110,7 +125,7 @@
                   ],
                   "Resource": [
                     {
-                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/anon-group-bot-dev*:*"
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/a-safe-space-dev*:*"
                     }
                   ]
                 },
@@ -121,7 +136,7 @@
                   ],
                   "Resource": [
                     {
-                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/anon-group-bot-dev*:*:*"
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/a-safe-space-dev*:*:*"
                     }
                   ]
                 }
@@ -134,7 +149,7 @@
           "Fn::Join": [
             "-",
             [
-              "anon-group-bot",
+              "a-safe-space",
               "dev",
               {
                 "Ref": "AWS::Region"
@@ -152,38 +167,28 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/anon-group-bot/dev/1607051435117-2020-12-04T03:10:35.117Z/anon-group-bot.zip"
+          "S3Key": "serverless/a-safe-space/dev/1624461837114-2021-06-23T15:23:57.114Z/a-safe-space.zip"
         },
-        "FunctionName": "anon-group-bot-dev-webhook",
         "Handler": "handler.webhook",
+        "Runtime": "python3.6",
+        "FunctionName": "a-safe-space-dev-webhook",
         "MemorySize": 1024,
+        "Timeout": 6,
+        "Environment": {
+          "Variables": {
+            "TELEGRAM_TOKEN": "1846154865:AAFfRczgPFIX-x5dou3Embu-y-8YsofIDHs"
+          }
+        },
         "Role": {
           "Fn::GetAtt": [
             "IamRoleLambdaExecution",
             "Arn"
           ]
-        },
-        "Runtime": "python3.6",
-        "Timeout": 6,
-        "Environment": {
-          "Variables": {
-            "TELEGRAM_TOKEN": "1362043851:AAFL26fjgBBYjyBK8bEEeFQ9r6QG01SGSto"
-          }
         }
       },
       "DependsOn": [
         "WebhookLogGroup"
       ]
-    },
-    "WebhookLambdaVersionjxUi7hbry59L5ok0IAW3pVljCKaB3VK4opivApo4": {
-      "Type": "AWS::Lambda::Version",
-      "DeletionPolicy": "Retain",
-      "Properties": {
-        "FunctionName": {
-          "Ref": "WebhookLambdaFunction"
-        },
-        "CodeSha256": "x/mpGalg1UAy87fucpZoR39ei0Bd4Xr+wYy92MBqAV4="
-      }
     },
     "SetUnderscorewebhookLambdaFunction": {
       "Type": "AWS::Lambda::Function",
@@ -192,43 +197,53 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/anon-group-bot/dev/1607051435117-2020-12-04T03:10:35.117Z/anon-group-bot.zip"
+          "S3Key": "serverless/a-safe-space/dev/1624461837114-2021-06-23T15:23:57.114Z/a-safe-space.zip"
         },
-        "FunctionName": "anon-group-bot-dev-set_webhook",
         "Handler": "handler.set_webhook",
+        "Runtime": "python3.6",
+        "FunctionName": "a-safe-space-dev-set_webhook",
         "MemorySize": 1024,
+        "Timeout": 6,
+        "Environment": {
+          "Variables": {
+            "TELEGRAM_TOKEN": "1846154865:AAFfRczgPFIX-x5dou3Embu-y-8YsofIDHs"
+          }
+        },
         "Role": {
           "Fn::GetAtt": [
             "IamRoleLambdaExecution",
             "Arn"
           ]
-        },
-        "Runtime": "python3.6",
-        "Timeout": 6,
-        "Environment": {
-          "Variables": {
-            "TELEGRAM_TOKEN": "1362043851:AAFL26fjgBBYjyBK8bEEeFQ9r6QG01SGSto"
-          }
         }
       },
       "DependsOn": [
         "SetUnderscorewebhookLogGroup"
       ]
     },
-    "SetUnderscorewebhookLambdaVersiondBxlxaoIjSXjR4fNdDC3a74rh9xzhWUSmMsVmDZdWAo": {
+    "WebhookLambdaVersionU01ykUpzjfGcqgkYObRjANIvWSUFjAnIuSQUstzJ8E": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "WebhookLambdaFunction"
+        },
+        "CodeSha256": "2LXN8i+LBoQZUjDdm2EP2NlT5Un6b+VSAM3wt3XKE+U="
+      }
+    },
+    "SetUnderscorewebhookLambdaVersionXqRxTWPc6dJNRcijkmI3z3FmTHoOTu44tILQAtefc": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "SetUnderscorewebhookLambdaFunction"
         },
-        "CodeSha256": "x/mpGalg1UAy87fucpZoR39ei0Bd4Xr+wYy92MBqAV4="
+        "CodeSha256": "2LXN8i+LBoQZUjDdm2EP2NlT5Un6b+VSAM3wt3XKE+U="
       }
     },
     "ApiGatewayRestApi": {
       "Type": "AWS::ApiGateway::RestApi",
       "Properties": {
-        "Name": "dev-anon-group-bot",
+        "Name": "dev-a-safe-space",
         "EndpointConfiguration": {
           "Types": [
             "EDGE"
@@ -341,7 +356,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1607051424788": {
+    "ApiGatewayDeployment1624461832685": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -433,18 +448,27 @@
     "ServerlessDeploymentBucketName": {
       "Value": {
         "Ref": "ServerlessDeploymentBucket"
+      },
+      "Export": {
+        "Name": "sls-a-safe-space-dev-ServerlessDeploymentBucketName"
       }
     },
     "WebhookLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "WebhookLambdaVersionjxUi7hbry59L5ok0IAW3pVljCKaB3VK4opivApo4"
+        "Ref": "WebhookLambdaVersionU01ykUpzjfGcqgkYObRjANIvWSUFjAnIuSQUstzJ8E"
+      },
+      "Export": {
+        "Name": "sls-a-safe-space-dev-WebhookLambdaFunctionQualifiedArn"
       }
     },
     "SetUnderscorewebhookLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "SetUnderscorewebhookLambdaVersiondBxlxaoIjSXjR4fNdDC3a74rh9xzhWUSmMsVmDZdWAo"
+        "Ref": "SetUnderscorewebhookLambdaVersionXqRxTWPc6dJNRcijkmI3z3FmTHoOTu44tILQAtefc"
+      },
+      "Export": {
+        "Name": "sls-a-safe-space-dev-SetUnderscorewebhookLambdaFunctionQualifiedArn"
       }
     },
     "ServiceEndpoint": {
@@ -468,6 +492,9 @@
             "/dev"
           ]
         ]
+      },
+      "Export": {
+        "Name": "sls-a-safe-space-dev-ServiceEndpoint"
       }
     }
   }

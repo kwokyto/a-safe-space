@@ -51,38 +51,9 @@ def webhook(event, context):
         logger.info('Message received')
         update = telegram.Update.de_json(json.loads(event.get('body')), bot)
         
-        try:
-            chat_id = update.message.chat.id
-            text = update.message.text
-        except:
-            chat_id = update.edited_message.chat.id
-            text = update.edited_message.text
-
-        debug = False
-        #debug = debugging_mode(chat_id, text) # DEBUGGING MODE UNCOMMENT TO ENABLE DEBUGGING
-        flush = False # Change to True to flush all messages
-        if debug:
-            if debug is True: #is admin
-                if flush:
-                    lst = [{"message": "Messages flushed", "receiver_id": chat_id}]
-                else:
-                    lst = get_response(text, chat_id)
-                    lst = lst[0]
-                    lst[0]["receiver_id"] = chat_id # return response to tester
-            else:
-                lst = debug # send debugging message
-        else:
-            lst = get_response(text, chat_id) # not debugging
-        
-        for dic in lst:
-            chat_id = dic["receiver_id"]
-            text = dic["message"]
-            try:
-                bot.sendMessage(chat_id=chat_id, text=text)
-            except:
-                logger.info(chat_id + " has blocked the bot")
-        logger.info('Message sent')
-         
+        chat_id = update.message.chat.id
+        text = update.message.text
+        bot.sendMessage(chat_id=chat_id, text=text) 
         return OK_RESPONSE
 
     return ERROR_RESPONSE

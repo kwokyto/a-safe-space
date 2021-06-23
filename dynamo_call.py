@@ -17,7 +17,7 @@ logging.basicConfig(level=logging.INFO)
 
 # Setting up client with AWS
 client = boto3.resource("dynamodb")
-TableName = "AnonChatTable"
+TableName = "ASafeSpaceTable"
 table = client.Table(TableName)
 
 def is_registered(chat_id):
