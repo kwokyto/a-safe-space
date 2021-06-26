@@ -1,7 +1,8 @@
 import logging
 
-from logic import preregistation_commands
-from messages import INVALID_FORMAT_MESSAGE
+from database import is_registered
+from logic import leave_command, preregistation_commands, username_command
+from messages import (INVALID_FORMAT_MESSAGE, UNAUTHORISED_MESSAGE)
 from utilities import extract_chat_id, get_message_type
 
 # Logging is cool!
@@ -27,14 +28,35 @@ def main(bot, body):
         bot.send_message(chat_id=chat_id, text=INVALID_FORMAT_MESSAGE)
         return
     
-    # handle text type messages
+    # handle pre-registration commands
     if message_type == "text":
         text = body["message"]["text"]
-
-        # handle pre-registration commands
         if text == "/start" or text == "/help" or text[:9] == "/register":
             preregistation_commands(bot, chat_id, text)
             return
+    
+    # registration check
+    user = is_registered(chat_id)
+    if user == False:
+        bot.send_message(chat_id=chat_id, text=UNAUTHORISED_MESSAGE)
+        logger.info("User is not yet registered.")
+        return
+
+    # non-registered users should NOT proceed past here
+
+    # handle post-registration commands
+    if message_type == "text":
+        text = body["message"]["text"]
+        if text == "/username":
+            username_command(bot, chat_id, user)
+            return
+        
+        if text == "/leave":
+            leave_command(bot, chat_id)
+            return
+
 
     bot.send_message(chat_id=chat_id, text="This is the default response.")
     return
+
+

@@ -68,9 +68,9 @@ def get_user(chat_id):
         Key = {"hashid": hashid}
     )
     if "Item" in response.keys():
-        item = response["Item"]
+        user = response["Item"]
         logger.info("User item found and returned.")
-        return item
+        return user
     else:
         logger.warning("User was not found in the table.")
         return None
@@ -87,11 +87,33 @@ def insert_user(chat_id, nusnetid, username):
         )
     logger.info("New user successfully added into DynamoDB.")
 
+def remove_user(chat_id):
+    """
+    Removes a user from the table
+    """
+    hashid = get_sha256_hash(chat_id)
+    table.delete_item(
+        Key = {"hashid": hashid}
+    )
+    logger.info("User has been successfully removed from the database.")
+
 def is_registered(chat_id):
+    """
+    Checks if a user is registered. Since this will be the first logical access to the table,
+    the method also creates a table if it does not exist.
+
+    Returns
+    -------
+    dic
+        Dictionary representing the user if user is registered
+    bool
+        False if user is not registered
+    """
     try:
-        if get_user(chat_id) == None:
+        user = get_user(chat_id)
+        if user == None:
             return False
-        return True
+        return user
     except:
         create_table()
         return False

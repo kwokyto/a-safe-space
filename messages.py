@@ -8,6 +8,10 @@ REGISTRATION_CLARIFICATION_MESSAGE = "registration clarification message"
 WRONG_PASSWORD_MESSAGE = "wrong password message"
 REGISTRATION_SUCCESS_MESSAGE = "registration success message"
 REGISTRATION_FAILURE_MESSAGE = "registration failure message"
+UNAUTHORISED_MESSAGE = "unauthorised message"
+USERNAME_MESSAGE = "username message"
+LEAVE_SUCCESS_MESSAGE = "leave success message"
+LEAVE_FAILURE_MESSAGE = "leave failure message"
 
 ANIMAL_LIST = ["iguana", "jackal", "jaguar", "kangaroo", "koala", "komodo", "kookaburra", "lemur", "leopard",
                "lion", "lizard", "llama", "manatee", "meerkat", "mongoose", "monkey", "moose", "nighthawk",
