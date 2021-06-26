@@ -1,12 +1,10 @@
-# Anonymous by Love, USP
+# A Safe Space by Love, USP
 
-![anonymous logo](anonymous_profile_pic.jpg)
+![a_safe_space_logo]()
 
-Anonymous was created to create a safe space for USP students to hold meaningful conversations about mental health.
+A safe space was created as a platform for USP students to reach out for help and seek conversations on mental health issues.
 This simulates a group chat where students can share experience or advice, while remaining completely anonymous.
-The telegram bot can be accessed [here](https://telegram.me/anongroupbetabot).
-
-:warning: This bot was disabled as of 17 April 2021. Contact @kwokyto on Telegram for any enquiries.
+The telegram bot can be accessed [here](https://telegram.me/asafespacebot).
 
 ## Features
 
@@ -22,15 +20,15 @@ Below are a list of available commands for users that can be used in the Telegra
 
 Returns a general welcome message.
 
-### `/about`
+### `/help`
 
 Returns a bot description, along with the sign up link, FAQ link, and admins’ Telegram handles.
 
 ### `/register <NUSNET ID> <password>`
 
-Registers the student into the Anonymous system.
+Registers the student into the system.
 After being registered, students can send and receive messages.
-The password is specific to each student, and will be provided by Love, USP admin.
+The password is specific to each student, and will be provided by a Love, USP admin.
 
 ### `/username`
 
@@ -38,15 +36,20 @@ Shows the student's username.
 
 ### `/leave`
 
-Unregisters the student from the Anonymous system.
+Unregisters the student from the system.
 Afterwards, students will no longer be able to receive messages that are sent.
-All details of the student that are stored in the Anonymous system would also be deleted.
+All details of the student that are stored in the system would also be deleted.
 
 ## Admin Commands
 
-These commands should only be made known to the admin to prevent misuse.
+These commands would only work if the user is an admin.
 
-### `/delete <NUSNET ID> <password>`
+### `/admin <message>`
+
+Broadcasts the admins message as `uspadmin` to all students in the system.
+This could be used to convey messages about downtime, or promotions for Love, USP events.
+
+### `/adminremove <NUSNET ID> <password>`
 
 Unregisters the user with a certain NUSNET ID.
 This is to ensure that admins can easily remove any user that may be causing distress in the chat.
@@ -54,27 +57,20 @@ The password used here is different from the password used in `/register`, and s
 
 ## FAQs
 
-The FAQ for the bot can be found [here](https://www.tinyurl.com/loveuspbotfaq "Love USP Bot FAQs")
+The FAQ for the bot can be found [here](faq/faq.md "A Safe Space FAQ")
 
 ## Debugging
 
 The following outlines the procedure for debugging.
 
-1. In dynamo_call.py, insert admin chat ID in `debugging_mode()` function.
-2. In handler.py, uncomment line to enable debugging mode.
-3. Open command line and `serverless deploy`.
-4. From now on, non-admins who send messages to the bot will receive an "under maintenance" message.
-5. Only admin can use `/broadcast_debug`, to send an "under maintenance" message to all users.
-6. Admin can continue testing the bot as a normal user while under debug mode.
-7. To flush the message queue, set `flush = True` in handler.py and `serverless deploy`.
-8. After debugging, comment line in handler.py for disable debugging mode.
-9. In Telegram, send `/allok <password>` to send an "all ok" message to all users.
+1. 
 
 ## AWS and Serverless Deployment
 
 ### Installing
 
 ```lang-none
+# Clone the repository into your local drive
 # Open the command window in the bot file location
 
 # Install the Serverless Framework
@@ -106,9 +102,5 @@ $ curl -X POST https://<your_url>.amazonaws.com/dev/set_webhook
 6. Run the Telegram bot with `/start` and register with `/register`
 7. The first attempt at registration should return an error.
 8. From the AWS Console, select AWS DynamoDB.
-9. Under "Tables", ensure that the "AnonChatTable" table has been created.
+9. Under "Tables", ensure that the "ASafeSpaceTable" table has been created.
 10. Re-register with `/register`, and registration should be successful.
-
-## Future Developments
-
-- Improved welcome message to assist the registration process and what to expect and do next
