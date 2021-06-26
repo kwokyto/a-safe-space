@@ -1,8 +1,9 @@
 import json
-import telegram
-import os
 import logging
-from logic import *
+import os
+import telegram
+
+from main import main
 
 # Logging is cool!
 logger = logging.getLogger()
@@ -60,11 +61,13 @@ def webhook(event, context):
     """
 
     bot = configure_telegram()
-    ##logger.info('Event: {}'.format(event)) ## for privacy issues, this is commented out
+
+    ## for privacy issues, this is commented out
+    ## logger.info('Event: {}'.format(event))
 
     if event.get('httpMethod') == 'POST' and event.get('body'): 
         logger.info('Message received')
-        body = telegram.Update.de_json(json.loads(event.get('body')), bot)
+        body = telegram.Update.de_json(json.loads(event.get('body')), bot).to_dict()
         main(bot, body)
         return OK_RESPONSE
 

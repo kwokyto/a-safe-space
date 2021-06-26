@@ -1,0 +1,157 @@
+normal_message = {
+  update_id: 870108012,
+  message: {
+    message_id: 47,
+    date: 1624634701,
+    chat: {
+      id: 197107238,
+      type: "private",
+      username: "kwokyto",
+      first_name: "kwokyto",
+    },
+    text: "text",
+    entities: [],
+    caption_entities: [],
+    photo: [],
+    new_chat_members: [],
+    new_chat_photo: [],
+    delete_chat_photo: False,
+    group_chat_created: False,
+    supergroup_chat_created: False,
+    channel_chat_created: False,
+    from: {
+      id: 197107238,
+      first_name: "kwokyto",
+      is_bot: False,
+      username: "kwokyto",
+      language_code: "es",
+    },
+    new_chat_member: None,
+  },
+};
+
+edited_message = {
+  update_id: 870108013,
+  edited_message: {
+    message_id: 47,
+    date: 1624634701,
+    chat: {
+      id: 197107238,
+      type: "private",
+      username: "kwokyto",
+      first_name: "kwokyto",
+    },
+    edit_date: 1624634844,
+    text: "edited message",
+    entities: [],
+    caption_entities: [],
+    photo: [],
+    new_chat_members: [],
+    new_chat_photo: [],
+    delete_chat_photo: False,
+    group_chat_created: False,
+    supergroup_chat_created: False,
+    channel_chat_created: False,
+    from: {
+      id: 197107238,
+      first_name: "kwokyto",
+      is_bot: False,
+      username: "kwokyto",
+      language_code: "es",
+    },
+    new_chat_member: None,
+  },
+};
+
+sticker = {
+  update_id: 870108016,
+  message: {
+    message_id: 54,
+    date: 1624635005,
+    chat: {
+      id: 197107238,
+      type: "private",
+      username: "kwokyto",
+      first_name: "kwokyto",
+    },
+    entities: [],
+    caption_entities: [],
+    photo: [],
+    sticker: {
+      file_id:
+        "CAACAgMAAxkBAAM2YNX2fW6IjZk-3JkAAUhZgLN0MOqOAALcAAPfMtMEfCNJ7VBS7wkgBA",
+      width: 512,
+      height: 512,
+      thumb: {
+        file_id:
+          "AAMCAwADGQEAAzZg1fZ9boiNmT7cmQABSFmAs3Qw6o4AAtwAA98y0wR8I0ntUFLvCQEAB20AAyAE",
+        width: 128,
+        height: 128,
+        file_size: 6002,
+      },
+      emoji: "㊙️",
+      file_size: 24524,
+      set_name: "things_gay_furries_say",
+    },
+    new_chat_members: [],
+    new_chat_photo: [],
+    delete_chat_photo: False,
+    group_chat_created: False,
+    supergroup_chat_created: False,
+    channel_chat_created: False,
+    from: {
+      id: 197107238,
+      first_name: "kwokyto",
+      is_bot: False,
+      username: "kwokyto",
+      language_code: "es",
+    },
+    new_chat_member: None,
+  },
+};
+
+gif = {
+  update_id: 870108017,
+  message: {
+    message_id: 56,
+    date: 1624635030,
+    chat: {
+      id: 197107238,
+      type: "private",
+      username: "kwokyto",
+      first_name: "kwokyto",
+    },
+    entities: [],
+    caption_entities: [],
+    document: {
+      file_id:
+        "CgACAgUAAxkBAAM4YNX2lmoVSFGsEqzchJFOY-Gb5boAAoABAALHLQlV1N3OP4w-6MUgBA",
+      thumb: {
+        file_id:
+          "AAMCBQADGQEAAzhg1faWahVIUawSrNyEkU5j4ZvlugACgAEAAsctCVXU3c4_jD7oxQEAB20AAyAE",
+        width: 320,
+        height: 180,
+        file_size: 18644,
+      },
+      file_name: "giphy.gif.mp4",
+      mime_type: "video/mp4",
+      file_size: 78643,
+    },
+    photo: [],
+    new_chat_members: [],
+    new_chat_photo: [],
+    delete_chat_photo: False,
+    group_chat_created: False,
+    supergroup_chat_created: False,
+    channel_chat_created: False,
+    from: {
+      id: 197107238,
+      first_name: "kwokyto",
+      is_bot: False,
+      username: "kwokyto",
+      language_code: "es",
+    },
+    new_chat_member: None,
+  },
+};
+
