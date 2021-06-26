@@ -1,11 +1,11 @@
 import logging
 
-from constants import (INVALID_COMMAND_MESSAGE, INVALID_FORMAT_MESSAGE,
+from asafespace.constants import (INVALID_COMMAND_MESSAGE, INVALID_FORMAT_MESSAGE,
                        UNAUTHORISED_MESSAGE)
-from database import is_registered
-from logic import (admin_commands, broadcast, postregistation_commands,
+from asafespace.database import is_registered
+from asafespace.logic import (admin_commands, broadcast, postregistation_commands,
                    preregistation_commands)
-from utilities import decimal_to_int, extract_chat_id, get_message_type
+from asafespace.utilities import decimal_to_int, extract_chat_id, get_message_type
 
 # Logging is cool!
 logger = logging.getLogger()

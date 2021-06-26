@@ -2,7 +2,7 @@ import logging
 import boto3
 
 from boto3.dynamodb.conditions import Attr
-from utilities import decimal_to_int, get_sha256_hash
+from asafespace.utilities import decimal_to_int, get_sha256_hash
 
 # Logging is cool!
 logger = logging.getLogger()

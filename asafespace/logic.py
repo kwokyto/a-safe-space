@@ -1,6 +1,6 @@
 import logging
 
-from constants import (ADMIN_REMOVE_FAILURE_MESSAGE,
+from asafespace.constants import (ADMIN_REMOVE_FAILURE_MESSAGE,
                        ADMIN_REMOVE_SUCCESS_MESSAGE,
                        ALREADY_REGISTERED_MESSAGE, HELP_MESSAGE,
                        INVALID_ADMIN_COMMAND_MESSAGE, LEAVE_FAILURE_MESSAGE,
@@ -9,9 +9,9 @@ from constants import (ADMIN_REMOVE_FAILURE_MESSAGE,
                        REGISTRATION_FAILURE_MESSAGE,
                        REGISTRATION_SUCCESS_MESSAGE, START_MESSAGE,
                        USERNAME_MESSAGE, WRONG_PASSWORD_MESSAGE)
-from database import (admin_remove, get_all_chat_ids, insert_user,
+from asafespace.database import (admin_remove, get_all_chat_ids, insert_user,
                       is_registered, remove_user)
-from utilities import (authenticate_admin, extract_sticker_id, get_message,
+from asafespace.utilities import (authenticate_admin, extract_sticker_id, get_message,
                        get_random_username, valid_password)
 
 # Logging is cool!

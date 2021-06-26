@@ -2,7 +2,7 @@ import hashlib
 import random
 import json
 
-from constants import ANIMAL_LIST, SENT_STICKER_MESSAGE
+from asafespace.constants import ANIMAL_LIST, SENT_STICKER_MESSAGE
 
 
 def get_message_type(body):

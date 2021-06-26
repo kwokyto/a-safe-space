@@ -1,6 +1,5 @@
-from utilities import get_admins, get_md5_hash
+from asafespace.utilities import get_admins, get_md5_hash
 import json
-import sys
 
 def is_nusnetid(nusnetid):
     if len(nusnetid) != 8:
