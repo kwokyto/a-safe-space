@@ -1,5 +1,6 @@
 import hashlib
 import random
+import json
 
 from constants import ANIMAL_LIST, SENT_STICKER_MESSAGE
 
@@ -147,7 +148,11 @@ def get_message(username, body, message_type):
     if message_type == "sticker":
         return username + SENT_STICKER_MESSAGE
 
-    original = body["message"]["text"]
+    if message_type == "admin":
+        original = body[7:]
+    else:
+        original = body["message"]["text"]
+        
     message = username + ":\n" + original
     return message
 
@@ -177,3 +182,21 @@ def extract_sticker_id(body):
 
     file_id = body["message"]["sticker"]["file_id"]
     return file_id
+
+def get_admins():
+    """
+    Obtains a dictionary of admins
+    """
+    
+    line = open("ADMINS.txt","r").readline()
+    admins = json.loads(line)
+    return admins
+
+def authenticate_admin(nusnetid):
+    """
+    Determines if a user is an admin
+    """
+    
+    hash = get_md5_hash(nusnetid)
+    admins = get_admins()
+    return hash in admins.keys()

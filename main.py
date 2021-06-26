@@ -1,7 +1,7 @@
 import logging
 
 from database import is_registered
-from logic import broadcast, leave_command, postregistation_commands, preregistation_commands, username_command
+from logic import admin_commands, broadcast, leave_command, postregistation_commands, preregistation_commands, username_command
 from constants import (INVALID_COMMAND_MESSAGE, INVALID_FORMAT_MESSAGE, UNAUTHORISED_MESSAGE)
 from utilities import decimal_to_int, extract_chat_id, get_message_type
 
@@ -53,6 +53,11 @@ def main(bot, body):
     # handle all other commands
     if message_type == "text":
         text = body["message"]["text"]
+
+        if text[:6] == "/admin":
+            logger.info("An admin command has been sent.")
+            admin_commands(bot, user, text)
+            return
 
         if text in ("/username", "/leave"):
             logger.info("A post-registation command has been sent.")

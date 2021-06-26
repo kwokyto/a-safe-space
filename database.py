@@ -2,6 +2,7 @@ import boto3
 import logging
 
 from utilities import decimal_to_int, get_sha256_hash
+from boto3.dynamodb.conditions import Attr
 
 # Logging is cool!
 logger = logging.getLogger()
@@ -98,7 +99,7 @@ def insert_user(chat_id, nusnetid, username):
 
 def remove_user(hashid):
     """
-    Removes a user from the table
+    Removes a user from the table using hashid
     """
 
     table.delete_item(
@@ -139,3 +140,13 @@ def get_all_chat_ids():
         chat_id = decimal_to_int(user["chat_id"])
         recipients.append(chat_id)
     return recipients
+
+def admin_remove(nusnetid):
+    """
+    Removes a user from the table using nusnetid
+    """
+    response = table.scan(
+        FilterExpression = Attr("nusnetid").eq(nusnetid)
+    )
+    hashid = response["Items"][0]['hashid']
+    remove_user(hashid)

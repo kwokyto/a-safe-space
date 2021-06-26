@@ -14,6 +14,10 @@ LEAVE_SUCCESS_MESSAGE = PREFIX + "leave success message"
 LEAVE_FAILURE_MESSAGE = PREFIX + "leave failure message"
 INVALID_COMMAND_MESSAGE = PREFIX + "invalid command message"
 SENT_STICKER_MESSAGE = PREFIX + "sent a sticker message"
+NOT_ADMIN_MESSAGE = PREFIX + "not an admin message"
+ADMIN_REMOVE_SUCCESS_MESSAGE = PREFIX + "admin remove success message"
+ADMIN_REMOVE_FAILURE_MESSAGE = PREFIX + "admin remove failure message"
+INVALID_ADMIN_COMMAND_MESSAGE = PREFIX + "invalid admin command message"
 
 ANIMAL_LIST = ["iguana", "jackal", "jaguar", "kangaroo", "koala", "komodo", "kookaburra", "lemur", "leopard",
                "lion", "lizard", "llama", "manatee", "meerkat", "mongoose", "monkey", "moose", "nighthawk",

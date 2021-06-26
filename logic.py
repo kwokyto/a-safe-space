@@ -1,12 +1,12 @@
 import logging
 
-from database import get_all_chat_ids, insert_user, is_registered, remove_user
-from constants import (ALREADY_REGISTERED_MESSAGE, HELP_MESSAGE, INVALID_COMMAND_MESSAGE, LEAVE_FAILURE_MESSAGE, LEAVE_SUCCESS_MESSAGE,
+from database import admin_remove, get_all_chat_ids, insert_user, is_registered, remove_user
+from constants import (ADMIN_REMOVE_FAILURE_MESSAGE, ADMIN_REMOVE_SUCCESS_MESSAGE, ALREADY_REGISTERED_MESSAGE, HELP_MESSAGE, INVALID_ADMIN_COMMAND_MESSAGE, INVALID_COMMAND_MESSAGE, LEAVE_FAILURE_MESSAGE, LEAVE_SUCCESS_MESSAGE, NOT_ADMIN_MESSAGE,
                       REGISTRATION_CLARIFICATION_MESSAGE,
                       REGISTRATION_FAILURE_MESSAGE,
                       REGISTRATION_SUCCESS_MESSAGE, START_MESSAGE, USERNAME_MESSAGE,
                       WRONG_PASSWORD_MESSAGE)
-from utilities import extract_sticker_id, get_message, get_random_username, valid_password
+from utilities import authenticate_admin, extract_sticker_id, get_message, get_random_username, valid_password
 
 # Logging is cool!
 logger = logging.getLogger()
@@ -89,6 +89,42 @@ def register_user(bot, chat_id, nusnetid):
         # if there is an error with adding a user to DynamoDB
         bot.send_message(chat_id=chat_id, text=REGISTRATION_FAILURE_MESSAGE)
         logger.error("User was not added due to an error. " + str(error))
+
+def admin_commands(bot, user, text):
+    """
+    Handles the commands that require registration
+    Commands are "/admin", "/adminremove"
+
+    Parameters
+    ----------
+    bot: Telegram both object
+    user: dict
+        Dictionary representing a user
+    text: str
+    """
+    chat_id = user["chat_id"]
+    if not authenticate_admin(user["nusnetid"]):
+        bot.send_message(chat_id=chat_id, text=NOT_ADMIN_MESSAGE)
+        logger.warn("A non-admin attempted to use admin commands.")
+        return
+    
+    if text[:7] == "/admin ":
+        broadcast(bot, "uspadmin", text, "admin", chat_id)
+        return
+
+    if text[:12] == "/adminremove":
+        try:
+            nustnetid = text[13:].lower()
+            admin_remove(nustnetid)
+            bot.send_message(chat_id=chat_id, text=ADMIN_REMOVE_SUCCESS_MESSAGE)
+            logger.info("Admin action: User has been successfuly removed.")
+        except Exception as error:
+            bot.send_message(chat_id=chat_id, text=ADMIN_REMOVE_FAILURE_MESSAGE)
+            logger.error("Admin action: User removal failed due to an error." + str(error))
+        return
+    
+    bot.send_message(chat_id=chat_id, text=INVALID_ADMIN_COMMAND_MESSAGE)
+    logger.info("Admin action: AN invalid admin command was given.")
 
 def postregistation_commands(bot, user, text):
     """
