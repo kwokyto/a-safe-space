@@ -199,4 +199,4 @@ def authenticate_admin(nusnetid):
     
     hash = get_md5_hash(nusnetid)
     admins = get_admins()
-    return hash in admins.keys()
+    return hash in admins.values()
