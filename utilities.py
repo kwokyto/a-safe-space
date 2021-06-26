@@ -1,7 +1,7 @@
 import hashlib
 import random
 
-from messages import ANIMAL_LIST, SENT_STICKER_MESSAGE
+from constants import ANIMAL_LIST, SENT_STICKER_MESSAGE
 
 
 def get_message_type(body):

@@ -1,7 +1,7 @@
 import logging
 
 from database import get_all_chat_ids, insert_user, is_registered, remove_user
-from messages import (ALREADY_REGISTERED_MESSAGE, HELP_MESSAGE, LEAVE_FAILURE_MESSAGE, LEAVE_SUCCESS_MESSAGE,
+from constants import (ALREADY_REGISTERED_MESSAGE, HELP_MESSAGE, INVALID_COMMAND_MESSAGE, LEAVE_FAILURE_MESSAGE, LEAVE_SUCCESS_MESSAGE,
                       REGISTRATION_CLARIFICATION_MESSAGE,
                       REGISTRATION_FAILURE_MESSAGE,
                       REGISTRATION_SUCCESS_MESSAGE, START_MESSAGE, USERNAME_MESSAGE,
@@ -89,6 +89,25 @@ def register_user(bot, chat_id, nusnetid):
         # if there is an error with adding a user to DynamoDB
         bot.send_message(chat_id=chat_id, text=REGISTRATION_FAILURE_MESSAGE)
         logger.error("User was not added due to an error. " + str(error))
+
+def postregistation_commands(bot, user, text):
+    """
+    Handles the commands that require registration
+    Commands are "/username", "/leave"
+
+    Parameters
+    ----------
+    bot: Telegram both object
+    chat_id: int
+    text: str
+    """
+    if text == "/username":
+        username_command(bot, user)
+        return
+    
+    if text == "/leave":
+        leave_command(bot, user)
+        return
 
 def username_command(bot, user):
     """

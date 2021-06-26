@@ -1,8 +1,8 @@
 import logging
 
 from database import is_registered
-from logic import broadcast, leave_command, preregistation_commands, username_command
-from messages import (INVALID_COMMAND_MESSAGE, INVALID_FORMAT_MESSAGE, UNAUTHORISED_MESSAGE)
+from logic import broadcast, leave_command, postregistation_commands, preregistation_commands, username_command
+from constants import (INVALID_COMMAND_MESSAGE, INVALID_FORMAT_MESSAGE, UNAUTHORISED_MESSAGE)
 from utilities import decimal_to_int, extract_chat_id, get_message_type
 
 # Logging is cool!
@@ -26,12 +26,14 @@ def main(bot, body):
     # check for file types we cannot handle
     if message_type in ("edited_messages", "others"):
         bot.send_message(chat_id=chat_id, text=INVALID_FORMAT_MESSAGE)
+        logger.info("A message of invalid format has been sent.")
         return
     
     # handle pre-registration commands
     if message_type == "text":
         text = body["message"]["text"]
-        if text == "/start" or text == "/help" or text[:9] == "/register":
+        if text in ("/start", "/help") or text[:9] == "/register":
+            logger.info("A pre-registation command has been sent.")
             preregistation_commands(bot, chat_id, text)
             return
     
@@ -43,26 +45,27 @@ def main(bot, body):
         return
 
     # non-registered users should NOT proceed past here
+    logger.info("User is registered.")
+
     # to override formatting
     user["chat_id"] = decimal_to_int(user["chat_id"])
 
-    # handle post-registration commands
+    # handle all other commands
     if message_type == "text":
         text = body["message"]["text"]
-        if text == "/username":
-            username_command(bot, user)
-            return
-        
-        if text == "/leave":
-            leave_command(bot, user)
+
+        if text in ("/username", "/leave"):
+            logger.info("A post-registation command has been sent.")
+            postregistation_commands(bot, user, text)
             return
 
         if text[0] == "/":
-            bot.send_message(chat_id=chat_id, text=INVALID_COMMAND_MESSAGE)
+            bot.send_message(chat_id=user["chat_id"], text=INVALID_COMMAND_MESSAGE)
             logger.info("An invalid command was given.")
             return
     
     # handle broadcasting messages
+    logger.info("A normal message for broadcasting has been sent.")
     broadcast(bot, user["username"], body, message_type, chat_id)
     return
 
