@@ -1,5 +1,8 @@
-# Serverless
-
+# Added by kwokyto
+.serverless/
+.vscode/
+node_modules/
+serverless.yml
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
