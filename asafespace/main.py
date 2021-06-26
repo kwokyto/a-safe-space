@@ -12,8 +12,6 @@ if logger.handlers:
         logger.removeHandler(handler)
 logging.basicConfig(level=logging.INFO)
 
-COMMANDS = ("/start")
-
 def main(bot, body):
     """
     Runs the main logic of the Telegram bot

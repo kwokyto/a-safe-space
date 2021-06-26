@@ -3,7 +3,7 @@ import logging
 import os
 import telegram
 
-from main import main
+from asafespace.main import main
 
 # Logging is cool!
 logger = logging.getLogger()
