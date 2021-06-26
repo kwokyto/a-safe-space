@@ -1,9 +1,9 @@
 import logging
 
 from database import is_registered
-from logic import leave_command, preregistation_commands, username_command
-from messages import (INVALID_FORMAT_MESSAGE, UNAUTHORISED_MESSAGE)
-from utilities import extract_chat_id, get_message_type
+from logic import broadcast, leave_command, preregistation_commands, username_command
+from messages import (INVALID_COMMAND_MESSAGE, INVALID_FORMAT_MESSAGE, UNAUTHORISED_MESSAGE)
+from utilities import decimal_to_int, extract_chat_id, get_message_type
 
 # Logging is cool!
 logger = logging.getLogger()
@@ -43,20 +43,27 @@ def main(bot, body):
         return
 
     # non-registered users should NOT proceed past here
+    # to override formatting
+    user["chat_id"] = decimal_to_int(user["chat_id"])
 
     # handle post-registration commands
     if message_type == "text":
         text = body["message"]["text"]
         if text == "/username":
-            username_command(bot, chat_id, user)
+            username_command(bot, user)
             return
         
         if text == "/leave":
-            leave_command(bot, chat_id)
+            leave_command(bot, user)
             return
 
-
-    bot.send_message(chat_id=chat_id, text="This is the default response.")
+        if text[0] == "/":
+            bot.send_message(chat_id=chat_id, text=INVALID_COMMAND_MESSAGE)
+            logger.info("An invalid command was given.")
+            return
+    
+    # handle broadcasting messages
+    broadcast(bot, user["username"], body, message_type, chat_id)
     return
 
 

@@ -1,12 +1,12 @@
 import logging
 
-from database import insert_user, is_registered, remove_user
+from database import get_all_chat_ids, insert_user, is_registered, remove_user
 from messages import (ALREADY_REGISTERED_MESSAGE, HELP_MESSAGE, LEAVE_FAILURE_MESSAGE, LEAVE_SUCCESS_MESSAGE,
                       REGISTRATION_CLARIFICATION_MESSAGE,
                       REGISTRATION_FAILURE_MESSAGE,
                       REGISTRATION_SUCCESS_MESSAGE, START_MESSAGE, USERNAME_MESSAGE,
                       WRONG_PASSWORD_MESSAGE)
-from utilities import get_random_username, valid_password
+from utilities import extract_sticker_id, get_message, get_random_username, valid_password
 
 # Logging is cool!
 logger = logging.getLogger()
@@ -27,6 +27,7 @@ def preregistation_commands(bot, chat_id, text):
     chat_id: int
     text: str
     """
+
     # start command
     if text == "/start":
         bot.send_message(chat_id=chat_id, text=START_MESSAGE)
@@ -77,6 +78,7 @@ def register_user(bot, chat_id, nusnetid):
     chat_id: int
     nusnetid: str
     """
+
     try:
         # try adding user to DynamoDB
         username = get_random_username()
@@ -88,34 +90,105 @@ def register_user(bot, chat_id, nusnetid):
         bot.send_message(chat_id=chat_id, text=REGISTRATION_FAILURE_MESSAGE)
         logger.error("User was not added due to an error. " + str(error))
 
-def username_command(bot, chat_id, user):
+def username_command(bot, user):
     """
     Sends the username to the user
 
     Parameters
     ----------
     bot: Telegram both object
-    chat_id: int
-    user: dic representing the user
+    user: dic
+        Represents a user
     """
+    
+    chat_id = user["chat_id"]
     username = user["username"]
     bot.send_message(chat_id=chat_id, text=USERNAME_MESSAGE+username)
     logger.info("User request for username successfully executed.")
 
-def leave_command(bot, chat_id):
+def leave_command(bot, user):
     """
     Unregistered the user from the database.
 
     Parameters
     ----------
     bot: Telegram both object
-    chat_id: int
+    user: dic
+        Represents a user
     """
+
     try:
-        remove_user(chat_id)
+        remove_user(user["hashid"])
+        chat_id = user["chat_id"]
         bot.send_message(chat_id=chat_id, text=LEAVE_SUCCESS_MESSAGE)
         logger.info("User is now unregistered.")
     except Exception as error:
         bot.send_message(chat_id=chat_id, text=LEAVE_FAILURE_MESSAGE)
         logger.error("User have not been removed due to an error. " + str(error))
 
+def broadcast(bot, username, body, message_type, chat_id):
+    """
+    Broadcasts both text and sticker messages to everyone
+
+    Parameters
+    ----------
+    bot: a Telegram bot object
+    username: str
+    body: dic
+        Body of webhook event
+    message_type: str
+        Either "text" or "sticker"
+    """
+
+    message = get_message(username, body, message_type)
+    recipients = get_all_chat_ids()
+    broadcast_message(bot, message, recipients, chat_id)
+
+    if message_type == "sticker":
+        file_id = extract_sticker_id(body)
+        broadcast_sticker(bot, file_id, recipients, chat_id)
+    return
+
+def broadcast_message(bot, message, recipients, skip):
+    """
+    Broadcasts only text messages to everyone
+
+    Parameters
+    ----------
+    bot: a Telegram bot object
+    message: str
+        Message should already be set with usernames at the beginning of the message
+    recipients: list
+        List of all chat_id
+    """
+    
+    for chat_id in recipients:
+        if chat_id == skip:
+            continue
+        try:
+            bot.send_message(chat_id=chat_id, text=message)
+        except Exception as error:
+            logger.error("Message could not be sent to user with chat_id " + str(chat_id) + ". " + str(error))
+    logger.info("Message has been sent to all users")
+
+def broadcast_sticker(bot, file_id, recipients, skip):
+    """
+    Broadcasts only stickers messages to everyone
+
+    Parameters
+    ----------
+    bot: a Telegram bot object
+    file_id: str
+        Sticker to send, pass a file_id as String to send a file that exists on the Telegram servers
+    recipients: list
+        List of all chat_id
+    """
+    
+    for chat_id in recipients:
+        if chat_id == skip:
+            continue
+        try:
+            bot.send_sticker(chat_id=chat_id, sticker=file_id)
+        except Exception as error:
+            logger.error("Sticker could not be sent to user with chat_id " + str(chat_id) + ". " + str(error))
+    logger.info("Sticker has been sent to all users")
