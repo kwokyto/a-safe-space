@@ -1,8 +1,8 @@
-import boto3
 import logging
+import boto3
 
-from utilities import decimal_to_int, get_sha256_hash
 from boto3.dynamodb.conditions import Attr
+from utilities import decimal_to_int, get_sha256_hash
 
 # Logging is cool!
 logger = logging.getLogger()
@@ -13,8 +13,8 @@ logging.basicConfig(level=logging.INFO)
 
 # Setting up client with AWS
 client = boto3.resource("dynamodb")
-TableName = "ASafeSpaceTable"
-table = client.Table(TableName)
+TABLE_NAME = "ASafeSpaceTable"
+table = client.Table(TABLE_NAME)
 
 def create_table():
     """
@@ -23,7 +23,7 @@ def create_table():
 
     try:
         client.create_table(
-            TableName = TableName,
+            TableName = TABLE_NAME,
             KeySchema = [
                 {
                     "AttributeName": 'hashid',
@@ -41,9 +41,9 @@ def create_table():
                 'WriteCapacityUnits': 5
             }
         )
-        logger.info("Table named " + TableName + " was created in DynamoDB.")
+        logger.info("Table named " + TABLE_NAME + " was created in DynamoDB.")
     except:
-        logger.info("Table named " + TableName + " already exists in DynamoDB.")
+        logger.info("Table named " + TABLE_NAME + " already exists in DynamoDB.")
     return
 
 def get_all_users():

@@ -1,8 +1,10 @@
 import logging
 
+from constants import (INVALID_COMMAND_MESSAGE, INVALID_FORMAT_MESSAGE,
+                       UNAUTHORISED_MESSAGE)
 from database import is_registered
-from logic import admin_commands, broadcast, leave_command, postregistation_commands, preregistation_commands, username_command
-from constants import (INVALID_COMMAND_MESSAGE, INVALID_FORMAT_MESSAGE, UNAUTHORISED_MESSAGE)
+from logic import (admin_commands, broadcast, postregistation_commands,
+                   preregistation_commands)
 from utilities import decimal_to_int, extract_chat_id, get_message_type
 
 # Logging is cool!
@@ -68,7 +70,7 @@ def main(bot, body):
             return
     
     # handle broadcasting messages
-    logger.info("A normal message for broadcasting has been sent.")
+    logger.info("A normal message requesting broadcasting has been sent.")
     broadcast(bot, user["username"], body, message_type, chat_id)
     return
 
