@@ -1,7 +1,7 @@
 import logging
 
 from asafespace.constants import (INVALID_COMMAND_MESSAGE, INVALID_FORMAT_MESSAGE,
-                       UNAUTHORISED_MESSAGE)
+                       UNAUTHORISED_MESSAGE, UNDER_MAINTENANCE_MESSAGE)
 from asafespace.database import is_registered
 from asafespace.logic import (admin_commands, broadcast, postregistation_commands,
                    preregistation_commands)
@@ -14,6 +14,8 @@ if logger.handlers:
         logger.removeHandler(handler)
 logging.basicConfig(level=logging.INFO)
 
+DEBUG_MODE = False
+
 def main(bot, body):
     """
     Runs the main logic of the Telegram bot
@@ -22,6 +24,14 @@ def main(bot, body):
     # obtain key message details
     message_type = get_message_type(body)
     chat_id = extract_chat_id(body)
+
+    # for debugging, set DEBUG_MODE to True in line 15
+    if DEBUG_MODE:
+        logger.warn("Debug mode has been activated.")
+        bot.send_message(chat_id=197107238, text=str(body))
+        logger.warn("Event text has been sent to the admin.")
+        bot.send_message(chat_id=chat_id, text=UNDER_MAINTENANCE_MESSAGE)
+        return
 
     # check for file types we cannot handle
     if message_type in ("edited_messages", "others"):

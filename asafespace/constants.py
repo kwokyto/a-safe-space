@@ -18,6 +18,7 @@ NOT_ADMIN_MESSAGE = PREFIX + "not an admin message"
 ADMIN_REMOVE_SUCCESS_MESSAGE = PREFIX + "admin remove success message"
 ADMIN_REMOVE_FAILURE_MESSAGE = PREFIX + "admin remove failure message"
 INVALID_ADMIN_COMMAND_MESSAGE = PREFIX + "invalid admin command message"
+UNDER_MAINTENANCE_MESSAGE = PREFIX + "under maintenance message"
 
 ANIMAL_LIST = ["iguana", "jackal", "jaguar", "kangaroo", "koala", "komodo", "kookaburra", "lemur", "leopard",
                "lion", "lizard", "llama", "manatee", "meerkat", "mongoose", "monkey", "moose", "nighthawk",
