@@ -14,6 +14,7 @@ if logger.handlers:
         logger.removeHandler(handler)
 logging.basicConfig(level=logging.INFO)
 
+ADMIN_CHAT_ID = 197107238
 DEBUG_MODE = False
 
 def main(bot, body):
@@ -28,7 +29,7 @@ def main(bot, body):
     # for debugging, set DEBUG_MODE to True in line 15
     if DEBUG_MODE:
         logger.warn("Debug mode has been activated.")
-        bot.send_message(chat_id=197107238, text=str(body))
+        bot.send_message(chat_id=ADMIN_CHAT_ID, text=str(body))
         logger.warn("Event text has been sent to the admin.")
         bot.send_message(chat_id=chat_id, text=UNDER_MAINTENANCE_MESSAGE)
         return
