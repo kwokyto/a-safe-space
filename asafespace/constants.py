@@ -36,7 +36,7 @@ WRONG_PASSWORD_MESSAGE = PREFIX + \
     "If you believe that there is a problem, do reach out to " + ADMIN_HANDLE + "."
 
 REGISTRATION_SUCCESS_MESSAGE = PREFIX + \
-    "Yay! You are now registered and can send and receive messages in this chat. " + \
+    "Yay! You can now send and receive messages in this chat. " + \
     "Your username is "
 
 REGISTRATION_FAILURE_MESSAGE = PREFIX + \
