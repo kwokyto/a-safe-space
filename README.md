@@ -63,7 +63,14 @@ The FAQ for the bot can be found [here](faq/faq.md "A Safe Space FAQ")
 
 The following outlines the procedure for debugging.
 
-1. 
+1. In asafespace/main.py, ensure `ADMIN_CHAT_ID` is accurate on line 17.
+2. In the same file, change `DEBUG_MODE` to `True` on line 18.
+3. In the command line, execute `severless deploy`.
+4. From now on, all message metadata would be sent to the admin for debugging.
+5. Students who sends messages to the bot will also receive an "under maintenance" response.
+6. After debugging, change `DEBUG_MODE` in asafespace/main.py back to `True`.
+7. In the command line, execute `severless deploy` again.
+8. Admins can use the `/admin` command in the bot to broadcast a message to all users.
 
 ## AWS and Serverless Deployment
 
@@ -95,7 +102,7 @@ $ curl -X POST https://<your_url>.amazonaws.com/dev/set_webhook
 ### AWS Configurations
 
 1. From the AWS Console, select AWS Lambda.
-2. In AWS Lambda, select "anon-group-bot-dev-webhook".
+2. In AWS Lambda, select "a-safe-space-bot-dev-webhook".
 3. Select "Permissions" and select the Lambda role under "Execution role"
 4. In AWS IAM, select "Attach policies" under "Permissions" and "Permissions policies"
 5. Search for and select "AmazonDynamoDBFullAccess" and "Attach policy"
