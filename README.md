@@ -57,7 +57,7 @@ The password used here is different from the password used in `/register`, and s
 
 ## FAQs
 
-The FAQ for the bot can be found [here](faq/faq.md "A Safe Space FAQ").
+The FAQ for the bot can be found [here](faq.md "A Safe Space FAQ").
 
 ## Debugging
 
