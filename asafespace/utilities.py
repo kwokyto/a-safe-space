@@ -189,3 +189,18 @@ def authenticate_admin(nusnetid):
     """
     
     return nusnetid in ADMINS.values()
+
+def is_nusnetid(nusnetid):
+    if len(nusnetid) != 8:
+        return False
+    if nusnetid[0] != "e":
+        return False
+    if not nusnetid[1:].isnumeric():
+        return False
+    return True
+
+def get_registration_command(nusnetid):
+    plaintext = nusnetid + SALT
+    hash = get_md5_hash(plaintext)
+    command = "/register " + nusnetid + " " + hash
+    return command

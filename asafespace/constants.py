@@ -78,6 +78,11 @@ UNDER_MAINTENANCE_MESSAGE = PREFIX + \
 TOO_LONG_MESSAGE = PREFIX + \
     "The message that you have just sent is too long. Please do not spam the chat and keep to 4000 characters."
 
+INVALID_NUSNETID_MESSAGE = PREFIX + \
+    "It seems like the NUSNETID you provided is invalid."
+
+
+
 # Other constants
 ANIMAL_LIST = ["iguana", "jackal", "jaguar", "kangaroo", "koala", "komodo", "kookaburra", "lemur", "leopard",
                "lion", "lizard", "llama", "manatee", "meerkat", "mongoose", "monkey", "moose", "nighthawk",

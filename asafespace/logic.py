@@ -3,7 +3,7 @@ import logging
 from asafespace.constants import (ADMIN_REMOVE_FAILURE_MESSAGE,
                        ADMIN_REMOVE_SUCCESS_MESSAGE,
                        ALREADY_REGISTERED_MESSAGE, HELP_MESSAGE,
-                       INVALID_ADMIN_COMMAND_MESSAGE, LEAVE_FAILURE_MESSAGE,
+                       INVALID_ADMIN_COMMAND_MESSAGE, INVALID_NUSNETID_MESSAGE, LEAVE_FAILURE_MESSAGE,
                        LEAVE_SUCCESS_MESSAGE, NOT_ADMIN_MESSAGE,
                        REGISTRATION_CLARIFICATION_MESSAGE,
                        REGISTRATION_FAILURE_MESSAGE,
@@ -12,7 +12,7 @@ from asafespace.constants import (ADMIN_REMOVE_FAILURE_MESSAGE,
 from asafespace.database import (admin_remove, get_all_chat_ids, insert_user,
                       is_registered, remove_user)
 from asafespace.utilities import (authenticate_admin, extract_sticker_id, get_message,
-                       get_random_username, valid_password)
+                       get_random_username, get_registration_command, is_nusnetid, valid_password)
 
 # Logging is cool!
 logger = logging.getLogger()
@@ -122,8 +122,12 @@ def admin_commands(bot, user, text):
         admin_remove(bot, text, chat_id)
         return
     
+    if text[:14] == "/adminregister":
+        admin_register(bot, text, chat_id)
+        return
+
     bot.send_message(chat_id=chat_id, text=INVALID_ADMIN_COMMAND_MESSAGE)
-    logger.info("Admin action: AN invalid admin command was given.")
+    logger.info("Admin action: An invalid admin command was given.")
 
 def admin_remove(bot, text, chat_id):
     try:
@@ -134,6 +138,17 @@ def admin_remove(bot, text, chat_id):
     except Exception as error:
         bot.send_message(chat_id=chat_id, text=ADMIN_REMOVE_FAILURE_MESSAGE)
         logger.error("Admin action: User removal failed due to an error." + str(error))
+
+def admin_register(bot, text, chat_id):
+    nusnetid = text[15:].lower()
+    if not is_nusnetid(nusnetid):
+        bot.send_message(chat_id=chat_id, text=INVALID_NUSNETID_MESSAGE)
+        logger.info("Admin action: An invalid nusnetid was provided.")
+        return
+    command = get_registration_command(nusnetid)
+    bot.send_message(chat_id=chat_id, text=command)
+    logger.info("Admin action: Registration command successfully sent.")
+    return
 
 def postregistation_commands(bot, user, text):
     """
