@@ -66,7 +66,7 @@ We hope that through this bot, you may find a comfortable platform to discuss se
 
 Firstly, fill up the sign up sheet [here](https://tinyurl.com/asafespacesignups), where we will brief you on expected behaviour and ground rules, then get your explicit agreement on these rules. We will then contact you for your NUSNET ID before giving you a unique password. Simply register using the following format:
 
-``` no-lang
+```lang-none
 /register <NUSNET ID> <password>
 /register e1234567 p4ssw0rdg1vEn
 ```
