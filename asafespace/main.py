@@ -1,6 +1,6 @@
 import logging
 
-from asafespace.constants import (INVALID_COMMAND_MESSAGE, INVALID_FORMAT_MESSAGE,
+from asafespace.constants import (INVALID_COMMAND_MESSAGE, INVALID_FORMAT_MESSAGE, TOO_LONG_MESSAGE,
                        UNAUTHORISED_MESSAGE, UNDER_MAINTENANCE_MESSAGE)
 from asafespace.database import is_registered
 from asafespace.logic import (admin_commands, broadcast, postregistation_commands,
@@ -32,7 +32,12 @@ def main(bot, body):
     # for debugging, set DEBUG_MODE to True in line 15
     if DEBUG_MODE:
         logger.warn("Debug mode has been activated.")
-        bot.send_message(chat_id=ADMIN_CHAT_ID, text=str(body))
+        # check for length
+        text = str(body)
+        if len(text) >= 4000:
+            text = "The original text sent was too long."
+            logger.warn("The original text sent was too long.")
+        bot.send_message(chat_id=ADMIN_CHAT_ID, text=text)
         logger.warn("Event text has been sent to the admin.")
         bot.send_message(chat_id=chat_id, text=UNDER_MAINTENANCE_MESSAGE)
         return
@@ -43,6 +48,14 @@ def main(bot, body):
         logger.info("A message of invalid format has been sent.")
         return
     
+    # check for messages that are too long
+    if message_type == "text":
+        text = body["message"]["text"]
+        if len(text) >= 4000:
+            bot.send_message(chat_id=chat_id, text=TOO_LONG_MESSAGE)
+            logger.warn("The original text sent was too long.")
+            return
+
     # handle pre-registration commands
     if message_type == "text":
         text = body["message"]["text"]

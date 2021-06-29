@@ -75,7 +75,8 @@ INVALID_ADMIN_COMMAND_MESSAGE = PREFIX + "The admin command you gave me does not
 UNDER_MAINTENANCE_MESSAGE = PREFIX + \
     "I am currently under maintenance. >< Do hang tight and I will be back online soon!"
 
-
+TOO_LONG_MESSAGE = PREFIX + \
+    "The message that you have just sent is too long. Please do not spam the chat and keep to 4000 characters."
 
 # Other constants
 ANIMAL_LIST = ["iguana", "jackal", "jaguar", "kangaroo", "koala", "komodo", "kookaburra", "lemur", "leopard",
