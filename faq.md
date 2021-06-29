@@ -27,7 +27,7 @@
 ## Ground Rules
 
 1. Be kind and respectful to each other - any form of harassment or abuse will not be tolerated. Basically, speak as you will to a person in real life.
-2. Respect each other’s privacy and confidentiality - do not ask for identifying/contact information unless both sides mutually agree to do so. The onus is on every individual as to how much they’re comfortable to share.
+2. Respect each other's privacy and confidentiality - do not ask for identifying/contact information unless both sides mutually agree to do so. The onus is on every individual as to how much they're comfortable to share.
 3. The admins reserve the right to remove users at their discretion, if they are deemed to have contravened the rules.
 
 ## Important Links
@@ -51,7 +51,7 @@ When registered, any message that you send to the bot will be sent to all other 
 |Command|Action|
 |-------|------|
 |`/start`|Returns a general welcome message.|
-|`/help`|Returns a bot description, along with the sign up link, FAQ link, and admins’ Telegram handles.|
+|`/help`|Returns a bot description, along with the sign up link, FAQ link, and admins' Telegram handles.|
 |`/register <NUSNET ID> <password>`|Registers you into the system. A username will be given to you in the form of `usp<animal>`. After registration, you can send and receive messages. The password is specific to each student, and will be provided by Love, USP admin.|
 |`/username`|Shows your username.|
 |`/leave`|Unregisters you from the system. Afterwards, you will no longer be able to receive messages that are sent. All of your details that are stored in the system would also be deleted.|
@@ -99,7 +99,7 @@ Anything you send will be sent to everyone registered in the bot, because this s
 
 ### 12. I am uncomfortable with how my information is stored, what can I do?
 
-Use the command `/leave`. This will remove you from the chat and delete all your information stored. However, this would mean that you will no longer be able to use the bot’s features.
+Use the command `/leave`. This will remove you from the chat and delete all your information stored. However, this would mean that you will no longer be able to use the bot's features.
 
 ## Interactions
 
@@ -111,7 +111,7 @@ We are slowly looking to expand functionalities to allow more flexibility in con
 
 ### 14. Someone in the chat is making me uncomfortable, what do I do?
 
-Acreenshot the conversation and contact the admins. The admins will take it from there. Since deleting messages is not an option on the bot, any offensive messages cannot be deleted from history.
+Screenshot the conversation and contact the admins. The admins will take it from there. Since deleting messages is not an option on the bot, any offensive messages cannot be deleted from history.
 
 ## Other Problems
 
