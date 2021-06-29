@@ -188,7 +188,7 @@ def get_admins():
     Obtains a dictionary of admins
     """
     
-    line = open("ADMINS.txt","r").readline()
+    line = open("asafespace/ADMINS.txt","r").readline()
     admins = json.loads(line)
     return admins
 
