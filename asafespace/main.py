@@ -1,11 +1,16 @@
 import logging
 
-from asafespace.constants import (INVALID_COMMAND_MESSAGE, INVALID_FORMAT_MESSAGE, TOO_LONG_MESSAGE,
-                       UNAUTHORISED_MESSAGE, UNDER_MAINTENANCE_MESSAGE)
+from asafespace.constants import (INVALID_COMMAND_MESSAGE,
+                                  INVALID_FORMAT_MESSAGE, TOO_LONG_MESSAGE,
+                                  UNAUTHORISED_MESSAGE,
+                                  UNDER_MAINTENANCE_MESSAGE)
+from asafespace.credentials import ADMIN_CHAT_ID
 from asafespace.database import is_registered
-from asafespace.logic import (admin_commands, broadcast, postregistation_commands,
-                   preregistation_commands)
-from asafespace.utilities import decimal_to_int, extract_chat_id, get_message_type
+from asafespace.logic import (admin_commands, broadcast,
+                              postregistation_commands,
+                              preregistation_commands)
+from asafespace.utilities import (decimal_to_int, extract_chat_id,
+                                  get_message_type)
 
 # Logging is cool!
 logger = logging.getLogger()
@@ -14,7 +19,6 @@ if logger.handlers:
         logger.removeHandler(handler)
 logging.basicConfig(level=logging.INFO)
 
-ADMIN_CHAT_ID = 197107238
 DEBUG_MODE = False
 
 def main(bot, body):

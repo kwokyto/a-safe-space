@@ -1,8 +1,9 @@
 import hashlib
-import random
 import json
+import random
 
 from asafespace.constants import ANIMAL_LIST, SENT_STICKER_MESSAGE
+from asafespace.credentials import ADMINS, SALT
 
 
 def get_message_type(body):
@@ -109,7 +110,6 @@ def valid_password(nusnetid, password):
         True if password is valid, False otherwise
     """
 
-    SALT = "loveusp"
     hash = get_md5_hash(nusnetid + SALT)
     return hash == password
     
@@ -183,20 +183,9 @@ def extract_sticker_id(body):
     file_id = body["message"]["sticker"]["file_id"]
     return file_id
 
-def get_admins():
-    """
-    Obtains a dictionary of admins
-    """
-    
-    line = open("asafespace/ADMINS.txt","r").readline()
-    admins = json.loads(line)
-    return admins
-
 def authenticate_admin(nusnetid):
     """
     Determines if a user is an admin
     """
     
-    hash = get_md5_hash(nusnetid)
-    admins = get_admins()
-    return hash in admins.values()
+    return nusnetid in ADMINS.values()

@@ -3,6 +3,7 @@
 .vscode/
 node_modules/
 serverless.yml
+asafespace/credentials.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
