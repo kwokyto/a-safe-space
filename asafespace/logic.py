@@ -119,18 +119,21 @@ def admin_commands(bot, user, text):
         return
 
     if text[:12] == "/adminremove":
-        try:
-            nustnetid = text[13:].lower()
-            admin_remove(nustnetid)
-            bot.send_message(chat_id=chat_id, text=ADMIN_REMOVE_SUCCESS_MESSAGE)
-            logger.info("Admin action: User has been successfuly removed.")
-        except Exception as error:
-            bot.send_message(chat_id=chat_id, text=ADMIN_REMOVE_FAILURE_MESSAGE)
-            logger.error("Admin action: User removal failed due to an error." + str(error))
+        admin_remove(bot, text, chat_id)
         return
     
     bot.send_message(chat_id=chat_id, text=INVALID_ADMIN_COMMAND_MESSAGE)
     logger.info("Admin action: AN invalid admin command was given.")
+
+def admin_remove(bot, text, chat_id):
+    try:
+        nustnetid = text[13:].lower()
+        admin_remove(nustnetid)
+        bot.send_message(chat_id=chat_id, text=ADMIN_REMOVE_SUCCESS_MESSAGE)
+        logger.info("Admin action: User has been successfuly removed.")
+    except Exception as error:
+        bot.send_message(chat_id=chat_id, text=ADMIN_REMOVE_FAILURE_MESSAGE)
+        logger.error("Admin action: User removal failed due to an error." + str(error))
 
 def postregistation_commands(bot, user, text):
     """
