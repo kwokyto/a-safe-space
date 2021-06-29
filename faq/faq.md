@@ -16,6 +16,7 @@
   * [9. How are the usernames assigned? Can I change my username?](9.-How-are-the-usernames-assigned?-Can-I-change-my-username?)
   * [10. What personal details would be stored?](10.-What-personal-details-would-be-stored?)
   * [11. Who can see my messages? Will my messages be logged?](11.-Who-can-see-my-messages?-Will-my-messages-be-logged?)
+  * [12. I am uncomfortable with how my information is stored, what can I do?](12.-I-am-uncomfortable-with-how-my-information-is-stored,-what-can-I-do?)
 * [Interactions](#interactions)
   * [13. Why do some usual Telegram functions not work?](13.-Why-do-some-usual-Telegram-functions-not-work?)
   * [14. Someone in the chat is making me uncomfortable, what do I do?](14.-Someone-in-the-chat-is-making-me-uncomfortable,-what-do-I-do?)
