@@ -1,6 +1,6 @@
 # Admin sprecfic links
 REGISTRATION_LINK = "tinyurl.com/asafespacesignups"
-FAQ_LINK = "FAQ_LINK"
+FAQ_LINK = "tinyurl.com/asafespacefaq"
 ADMIN_HANDLE = "@kwokyto"
 
 

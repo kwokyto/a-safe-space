@@ -34,7 +34,7 @@
 
 * Telegram Bot: [@asafespacebot](https://telegram.me/asafespacebot)
 * Sign Ups: [https://tinyurl.com/asafespacesignups](https://tinyurl.com/asafespacesignups)
-* FAQ: [dummy_link](dummy_link)
+* FAQ: [https://tinyurl.com/asafespacefaq](https://tinyurl.com/asafespacefaq)
 
 ## General Questions
 

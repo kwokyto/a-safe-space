@@ -1,5 +1,4 @@
 import hashlib
-import json
 import random
 
 from asafespace.constants import ANIMAL_LIST, SENT_STICKER_MESSAGE
