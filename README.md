@@ -14,7 +14,7 @@ No other personal information would be shared with anyone in the group.
 
 ## General Commands
 
-Below are a list of available commands for users that can be used in the Telegram bot.
+Below are a list of available commands for students that can be used in the Telegram bot.
 
 ### `/start`
 
@@ -49,11 +49,15 @@ These commands would only work if the user is an admin.
 Broadcasts the admins message as `uspadmin` to all students in the system.
 This could be used to convey messages about downtime, or promotions for Love, USP events.
 
-### `/adminremove <NUSNET ID> <password>`
+### `/adminremove <NUSNET ID>`
 
-Unregisters the user with a certain NUSNET ID.
-This is to ensure that admins can easily remove any user that may be causing distress in the chat.
-The password used here is different from the password used in `/register`, and should only be known by the admin.
+Unregisters the student with a certain NUSNET ID.
+This is to ensure that admins can easily remove any student that may be causing distress in the chat.
+
+### `/adminregister <NUSNETID>`
+
+Creates a registration command for a student.
+This is to simplify the registration process, where the admin can send the entire command to the student.
 
 ## FAQs
 
@@ -70,7 +74,7 @@ The following outlines the procedure for debugging.
 5. Students who sends messages to the bot will also receive an "under maintenance" response.
 6. After debugging, change `DEBUG_MODE` in asafespace/main.py back to `True`.
 7. In the command line, execute `severless deploy` again.
-8. Admins can use the `/admin` command in the bot to broadcast a message to all users.
+8. Admins can use the `/admin` command in the bot to broadcast a message to all students.
 
 ## AWS and Serverless Deployment
 
