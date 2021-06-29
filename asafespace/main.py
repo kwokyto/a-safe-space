@@ -21,6 +21,9 @@ def main(bot, body):
     """
     Runs the main logic of the Telegram bot
     """
+    
+    # for privacy issues, this is commented out
+    #logger.info('Event: {}'.format(body))
 
     # obtain key message details
     message_type = get_message_type(body)
@@ -84,5 +87,3 @@ def main(bot, body):
     logger.info("A normal message requesting broadcasting has been sent.")
     broadcast(bot, user["username"], body, message_type, chat_id)
     return
-
-

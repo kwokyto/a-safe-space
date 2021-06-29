@@ -63,9 +63,6 @@ def webhook(event, context):
 
     bot = configure_telegram()
 
-    ## for privacy issues, this is commented out
-    ## logger.info('Event: {}'.format(event))
-
     if event.get('httpMethod') == 'POST' and event.get('body'): 
         logger.info('Message received')
         body = telegram.Update.de_json(json.loads(event.get('body')), bot).to_dict()
