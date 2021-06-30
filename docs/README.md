@@ -40,7 +40,7 @@
 
 ### 1. What is A Safe Space by Love, USP?
 
-A Safe Space was created as a platform for USP students to reach out for help and seek conversations on mental health issues. This simulates a group chat where students can share experience or advice, while remaining completely anonymous.
+A Safe Space was created as a platform for USP students to hold conversations on mental health issues. This simulates a group chat where students can share experience or advice, while remaining completely anonymous.
 
 ### 2. What can I do on Anonymous?
 

@@ -2,7 +2,7 @@
 
 ![a_safe_space_logo]()
 
-A Safe Space was created as a platform for USP students to reach out for help and seek conversations on mental health issues.
+A Safe Space was created as a platform for USP students to hold conversations on mental health issues.
 This simulates a group chat where students can share experience or advice, while remaining completely anonymous.
 The telegram bot can be accessed [here](https://telegram.me/asafespacebot).
 

@@ -16,7 +16,7 @@ START_MESSAGE = PREFIX + \
     "Then, you can use /register to register!"
 
 HELP_MESSAGE = PREFIX + \
-    "I was created as a platform for USP students to reach out for help and seek conversations on mental health issues. " + \
+    "I was created as a platform for USP students to hold conversations on mental health issues. " + \
     "I simulate a group chat where students can share experience or advice, while remaining completely anonymous.\n\n" + \
     "Sign Up Form: " + REGISTRATION_LINK + "\n" + \
     "FAQ: " + FAQ_LINK + "\n" + \
