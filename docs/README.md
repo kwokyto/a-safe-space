@@ -29,6 +29,7 @@
 1. Be kind and respectful to each other - any form of harassment or abuse will not be tolerated. Basically, speak as you will to a person in real life.
 2. Respect each other's privacy and confidentiality - do not ask for identifying/contact information unless both sides mutually agree to do so. The onus is on every individual as to how much they're comfortable to share.
 3. The admins reserve the right to remove users at their discretion, if they are deemed to have contravened the rules.
+4. Do not spam messages or stickers in the chat.
 
 ## Important Links
 
