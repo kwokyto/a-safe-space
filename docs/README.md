@@ -4,7 +4,7 @@
 * [Important Links](#important-links)
 * [General Questions](#general-questions)
   * [1. What is A Safe Space by Love, USP?](#1-what-is-a-safe-space-by-love-usp)
-  * [2. What can I do on Anonymous?](#2-what-can-i-do-on-anonymous)
+  * [2. What can I do on A Safe Space?](#2-what-can-i-do-on-a-safe-space)
   * [3. What are the commands I can use?](#3-what-are-the-commands-i-can-use)
 * [Registration](#registration)
   * [4. Why should I register?](#4-why-should-i-register)
@@ -43,7 +43,7 @@
 
 A Safe Space was created as a platform for USP students to hold conversations on mental health issues. This simulates a group chat where students can share experience or advice, while remaining completely anonymous.
 
-### 2. What can I do on Anonymous?
+### 2. What can I do on A Safe Space?
 
 When registered, any message that you send to the bot will be sent to all other students that are also registered on the bot. Your message would be accompanied by your username, allowing others to identify messages that are sent. No other personal information would be shared with anyone in the group.
 
