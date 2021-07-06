@@ -122,4 +122,4 @@ In order to check if the bot is active, simply send the bot a command. Usually `
 
 ### 16. I have other concerns, who can I contact?
 
-For administrative concerns, you can contact Ling Hui (@linggghui), Rachel (@rachtxxy), or Radhika (@radhikaaaaa). For technical concerns regarding the bots, you can contact Ryan (@kwokyto).
+For administrative concerns, you can contact Ling Hui (@linggghui), Rachel (@rachtxxy), or Radhika (@radhikaaaaa). For technical concerns regarding the bots, you can contact Ryan (@kwokyto). If you have any suggestion for new features or on how to improve the code, you may also approach Ryan.
