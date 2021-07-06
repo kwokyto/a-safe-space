@@ -1,6 +1,6 @@
 # A Safe Space by Love, USP
 
-![a_safe_space_logo]()
+![a_safe_space_logo](docs/logo.png)
 
 A Safe Space was created as a platform for USP students to hold conversations on mental health issues.
 This simulates a group chat where students can share experience or advice, while remaining completely anonymous.

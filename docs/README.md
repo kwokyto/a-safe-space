@@ -1,5 +1,7 @@
 # A Safe Space FAQ
 
+![a_safe_space_logo](logo.png)
+
 * [Ground Rules](#ground-rules)
 * [Important Links](#important-links)
 * [General Questions](#general-questions)
