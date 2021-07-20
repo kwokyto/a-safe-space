@@ -111,7 +111,5 @@ $ curl -X POST https://<your_url>.amazonaws.com/dev/set_webhook
 4. In AWS IAM, select "Attach policies" under "Permissions" and "Permissions policies"
 5. Search for and select "AmazonDynamoDBFullAccess" and "Attach policy"
 6. Run the Telegram bot with `/start` and register with `/register`
-7. The first attempt at registration should return an error.
-8. From the AWS Console, select AWS DynamoDB.
-9. Under "Tables", ensure that the "ASafeSpaceTable" table has been created.
-10. Re-register with `/register`, and registration should be successful.
+7. From the AWS Console, select AWS DynamoDB.
+8. Under "Tables", ensure that the "ASafeSpaceTable" table has been created.
