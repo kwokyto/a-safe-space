@@ -1,3 +1,4 @@
+from asafespace.credentials import ADMIN_CHAT_ID
 import json
 import logging
 import os
@@ -66,7 +67,14 @@ def webhook(event, context):
     if event.get('httpMethod') == 'POST' and event.get('body'): 
         logger.info('Message received')
         body = telegram.Update.de_json(json.loads(event.get('body')), bot).to_dict()
-        main(bot, body)
+
+        try:
+            main(bot, body)
+        except Exception as error:
+            error_message = "There is an unhandled exception, please debug immediately.\n" + error.__str__()
+            bot.send_message(chat_id=ADMIN_CHAT_ID, text=error_message)
+            logger.error(error_message)
+        
         return OK_RESPONSE
 
     return ERROR_RESPONSE
