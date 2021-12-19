@@ -29,6 +29,12 @@ def main(bot, body):
     # for privacy issues, this is commented out
     #logger.info('Event: {}'.format(body))
 
+    # manage updates (https://core.telegram.org/bots/api#getting-updates)
+    if "update_id" in body.keys() and len(body.keys()) == 1:
+        logger.info("An update_id message has been sent by Telegram.")
+        logger.error('Event: {}'.format(body))
+        return
+
     # obtain key message details
     message_type = get_message_type(body)
     chat_id = extract_chat_id(body)
