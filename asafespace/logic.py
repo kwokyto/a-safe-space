@@ -90,7 +90,7 @@ def register_user(bot, chat_id, nusnetid):
         username = get_random_username()
         insert_user(chat_id, nusnetid, username)
         bot.send_message(chat_id=chat_id, text=REGISTRATION_SUCCESS_MESSAGE + username)
-        logger.info("New user " + username + "has been successfully added.")
+        logger.info("New user " + username + " has been successfully added.")
     except Exception as error:
         # if there is an error with adding a user to DynamoDB
         bot.send_message(chat_id=chat_id, text=REGISTRATION_FAILURE_MESSAGE)
